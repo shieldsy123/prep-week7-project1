@@ -25,7 +25,13 @@ $('document').ready(function() {
 
     var $xhr = $.getJSON(url);
     $xhr.done(function(results) {
+      if($xhr.status !== 200) {
+        return;
+      }
       console.log('RESULTS: ', results.Search);
+      $xhr.fail(function(err) {
+        console.log(err);
+      });
       // TODO: display the results
       for (var i = 0; i < results.Search.length; i++) {
         var title = results.Search[i].Title;
